@@ -12,20 +12,24 @@
 	<dict>
 		<key>19A44DD49D59EBD11BDD5122105176101DE2925D</key>
 		<string>https://github.com/kerbelda/DKAParseRest.git</string>
+		<key>3BA74C7C1E45855F239B74D3604F7563F6837EFA</key>
+		<string>github.com:collinsrj/Calculator.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Calculator/Calculator.xcodeproj</string>
+	<string>Calculator.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>19A44DD49D59EBD11BDD5122105176101DE2925D</key>
 		<string>../../..</string>
+		<key>3BA74C7C1E45855F239B74D3604F7563F6837EFA</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/kerbelda/DKAParseRest.git</string>
+	<string>github.com:collinsrj/Calculator.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>19A44DD49D59EBD11BDD5122105176101DE2925D</string>
+	<string>3BA74C7C1E45855F239B74D3604F7563F6837EFA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -34,7 +38,15 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>19A44DD49D59EBD11BDD5122105176101DE2925D</string>
 			<key>IDESourceControlWCCName</key>
-			<string>DKAParseRest</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3BA74C7C1E45855F239B74D3604F7563F6837EFA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Calculator</string>
 		</dict>
 	</array>
 </dict>
