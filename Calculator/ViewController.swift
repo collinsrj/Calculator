@@ -18,8 +18,7 @@ class ViewController: UIViewController {
         let operation = sender.currentTitle!
         switch operation {
         case "×" :
-            performOperation({(op1, op2) in op1 * op2})
-            
+            performOperation({$0 * $1})            
             //            case "−" :
             //            case "×" :
             //            case "÷" :
