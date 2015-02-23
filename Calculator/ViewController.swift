@@ -17,21 +17,18 @@ class ViewController: UIViewController {
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
         switch operation {
-        case "×" :
-            performOperation {$0 * $1}
-            //            case "−" :
-            //            case "×" :
-            //            case "÷" :
+        case "×" : performOperation {$0 * $1}
+        case "−" : performOperation {$1 - $0}
+        case "+" : performOperation {$0 + $1}
+        case "÷" : performOperation {$1 / $0}
             
-        default :
-            println("op was \(sender.description)")
-            break
+        default : break
         }
     }
     
     func performOperation(operation: (Double, Double) -> Double) {
         if operandStack.count >= 2 {
-            displayValue = operandStack.removeLast() * operandStack.removeLast()
+            displayValue = operation(operandStack.removeLast(),operandStack.removeLast())
             enter()
         }
     }
