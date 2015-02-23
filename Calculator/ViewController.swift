@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
+        if (userIsInTheMiddleOfTypingANumber) {
+            enter()
+        }
         switch operation {
         case "×" : performOperation {$0 * $1}
         case "−" : performOperation {$1 - $0}
