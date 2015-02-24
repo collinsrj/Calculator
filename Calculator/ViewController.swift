@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     // This is initialized automatically to nil
     @IBOutlet weak var display: UILabel!
     var userIsInTheMiddleOfTypingANumber = false
+    var userIsTypingAfterDecimalPoint = false
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
@@ -25,6 +26,8 @@ class ViewController: UIViewController {
         case "+" : performOperation {$0 + $1}
         case "÷" : performOperation {$1 / $0}
         case "√" : performOperation {sqrt($0)}
+        case "sin" : performOperation {sin($0)}
+        case "cos" : performOperation {cos($0)}
         default : break
         }
     }
@@ -43,6 +46,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func appendDecimal(sender: UIButton) {
+        if !userIsTypingAfterDecimalPoint {
+            appendDigit(sender)
+            userIsTypingAfterDecimalPoint = true
+        }
+        
+    }
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTypingANumber {
@@ -51,12 +62,12 @@ class ViewController: UIViewController {
             display.text =  digit
             userIsInTheMiddleOfTypingANumber = true
         }
-        
     }
     
     var operandStack = Array<Double>()
     
     @IBAction func enter() {
+        userIsTypingAfterDecimalPoint = false
         userIsInTheMiddleOfTypingANumber = false
         
         operandStack.append(displayValue)
