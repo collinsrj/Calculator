@@ -11,6 +11,7 @@
 		9F8848C21A928A27007F62EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8848C01A928A27007F62EF /* Main.storyboard */; };
 		9F8848D31A928A27007F62EF /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8848D21A928A27007F62EF /* CalculatorTests.swift */; };
 		9F8848DD1A9296A4007F62EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8848DC1A9296A4007F62EF /* AppDelegate.swift */; };
+		9FC646F21AA330C000F49CDB /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC646F11AA330C000F49CDB /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		9F8848D11A928A27007F62EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F8848D21A928A27007F62EF /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
 		9F8848DC1A9296A4007F62EF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9FC646F11AA330C000F49CDB /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				9F8848DC1A9296A4007F62EF /* AppDelegate.swift */,
 				9F8848BE1A928A27007F62EF /* ViewController.swift */,
 				9F8848C01A928A27007F62EF /* Main.storyboard */,
+				9FC646F11AA330C000F49CDB /* CalculatorBrain.swift */,
 				9F8848BA1A928A27007F62EF /* Supporting Files */,
 			);
 			path = Calculator;
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC646F21AA330C000F49CDB /* CalculatorBrain.swift in Sources */,
 				9F8848DD1A9296A4007F62EF /* AppDelegate.swift in Sources */,
 				9F8848BF1A928A27007F62EF /* ViewController.swift in Sources */,
 			);
@@ -391,6 +395,7 @@
 				9F8848D81A928A27007F62EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F8848D91A928A27007F62EF /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -399,6 +404,7 @@
 				9F8848DB1A928A27007F62EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

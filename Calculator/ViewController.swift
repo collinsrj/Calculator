@@ -13,45 +13,29 @@ class ViewController: UIViewController {
     // This is initialized automatically to nil
     @IBOutlet weak var display: UILabel!
     var userIsInTheMiddleOfTypingANumber = false
-    var userIsTypingAfterDecimalPoint = false
     
-    @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!
-        if (userIsInTheMiddleOfTypingANumber) {
-            enter()
-        }
-        switch operation {
-        case "×" : performOperation {$0 * $1}
-        case "−" : performOperation {$1 - $0}
-        case "+" : performOperation {$0 + $1}
-        case "÷" : performOperation {$1 / $0}
-        case "√" : performOperation {sqrt($0)}
-        case "sin" : performOperation {sin($0)}
-        case "cos" : performOperation {cos($0)}
-        default : break
-        }
-    }
-    
-    func performOperation(operation: (Double, Double) -> Double) {
-        if operandStack.count >= 2 {
-            displayValue = operation(operandStack.removeLast(),operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    func performOperation(operation: (Double) -> Double) {
-        if operandStack.count >= 1 {
-            displayValue = operation(operandStack.removeLast())
-            enter()
-        }
-    }
+    @IBOutlet weak var history: UILabel!
+    var brain = CalculatorBrain()
     
     @IBAction func appendDecimal(sender: UIButton) {
-        if !userIsTypingAfterDecimalPoint {
+        let range = display.text!.rangeOfString(".")
+        if range == nil {
             appendDigit(sender)
-            userIsTypingAfterDecimalPoint = true
         }
         
+    }
+    
+    @IBAction func operate(sender: UIButton) {
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
+        if let operation = sender.currentTitle {
+            if let result = brain.performOperation(operation) {
+                displayValue = result
+            } else {
+                
+            }
+        }
     }
     
     @IBAction func appendDigit(sender: UIButton) {
@@ -64,14 +48,14 @@ class ViewController: UIViewController {
         }
     }
     
-    var operandStack = Array<Double>()
     
     @IBAction func enter() {
-        userIsTypingAfterDecimalPoint = false
         userIsInTheMiddleOfTypingANumber = false
-        
-        operandStack.append(displayValue)
-        println("operandStack = \(operandStack)")
+        if let result = brain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            displayValue = 0
+        }
     }
     
     var displayValue: Double {
@@ -80,6 +64,7 @@ class ViewController: UIViewController {
         }
         set {
             display.text = "\(newValue)"
+            
         }
     }
     
