@@ -18,7 +18,7 @@ class CalculatorBrain {
         var description : String {
             get {
                 switch self {
-                case  .Operand(let operand):
+                case .Operand(let operand):
                     return "\(operand)"
                 case .UnaryOperation(let operation,_):
                     return operation
@@ -37,12 +37,12 @@ class CalculatorBrain {
             knownOps[op.description] = op
         }
         learnOp(Op.BinaryOperation("×", *))
-        knownOps["−"] = Op.BinaryOperation("−"){$1 - $0}
-        knownOps["+"] = Op.BinaryOperation("+", +)
-        knownOps["÷"] = Op.BinaryOperation("÷"){$1 / $0}
-        knownOps["√"] = Op.UnaryOperation("√", sqrt) // this is the same as Op.UnaryOperation("√") {sqrt($0)}
-        knownOps["sin"] = Op.UnaryOperation("sin", sin)
-        knownOps["cos"] = Op.UnaryOperation("cos", cos)
+        learnOp(Op.BinaryOperation("−",{$1 - $0}))
+        learnOp(Op.BinaryOperation("+", +))
+        learnOp(Op.BinaryOperation("÷", {$1 / $0}))
+        learnOp(Op.UnaryOperation("√", sqrt)) // this is the same as Op.UnaryOperation("√") {sqrt($0)}
+        learnOp(Op.UnaryOperation("sin", sin))
+        learnOp(Op.UnaryOperation("cos", cos))
     }
     
     private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]) {
@@ -52,13 +52,13 @@ class CalculatorBrain {
             let op = remainingOps.removeLast()
             switch op {
             case .Operand(let operand):
-                return(operand, remainingOps)
-            case .UnaryOperation(_, let operation):
+                return (operand, remainingOps)
+            case .UnaryOperation(let opName, let operation):
                 let operandEvaluation = evaluate(remainingOps)
                 if let operand = operandEvaluation.result {
                     return (operation(operand), operandEvaluation.remainingOps)
                 }
-            case .BinaryOperation(_, let operation):
+            case .BinaryOperation(let opName, let operation):
                 let op1Evaluation = evaluate(remainingOps)
                 if let operand1 = op1Evaluation.result {
                     let op2Evaluation = evaluate(op1Evaluation.remainingOps)
@@ -76,9 +76,6 @@ class CalculatorBrain {
         return result
     }
     
-    
-    
-    
     func pushOperand(operand: Double) -> Double? {
         opStack.append(Op.Operand(operand))
         return evaluate()
@@ -89,6 +86,42 @@ class CalculatorBrain {
             opStack.append(operation)
         }
         return evaluate()
+    }
+    
+    func reset() {
+        opStack.removeAll(keepCapacity: false)
+    }
+    
+    var description: String {
+        get {
+            let (desc,_) = description(opStack)
+            return desc!
+        }
+    }
+    
+    private func description(ops: [Op]) -> (result: String?, remainingOps: [Op]) {
+        if ops.isEmpty {
+            return (" ",ops)
+        } else {
+            var remainingOps = ops
+            let op = remainingOps.removeLast()
+            switch (op) {
+            case .Operand(let operand):
+                return ("\(operand)", remainingOps)
+            case .UnaryOperation(let operation, _):
+                let (operandEvaluation,_) = description(remainingOps)
+                return ("\(operation)(\(operandEvaluation!))",remainingOps)
+            case .BinaryOperation(let operation, _):
+                let op1Evaluation = description(remainingOps)
+                if let operand1 = op1Evaluation.result {
+                    let op2Evaluation = description(op1Evaluation.remainingOps)
+                    if let operand2 = op2Evaluation.result {
+                        return ("(\(operand2)\(operation)\(operand1))", op2Evaluation.remainingOps)
+                    }
+                }
+            }
+        }
+        return ("?", ops)
     }
 }
 
